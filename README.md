@@ -1,25 +1,26 @@
-# 🎈 Blank app template
+import streamlit as st
 
-A simple Streamlit app template for you to modify!
+st.set_page_config(
+    page_title="AI Investment Analyst",
+    page_icon="📈",
+    layout="wide"
+)
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+st.title("📈 AI Investment Analyst")
 
-### How to run it on your own machine
+st.write(
+    "Enter a stock or ETF ticker to generate a complete investment analysis."
+)
 
-Prerequisite: install `uv` if you don't already have it.
+ticker = st.text_input(
+    "Ticker Symbol",
+    placeholder="Example: HOOD, SNOW, AAPL, VOO"
+).upper().strip()
 
-```
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+analyze = st.button("Analyze Investment", type="primary")
 
-1. Sync the dependencies
-
-   ```
-   $ uv sync
-   ```
-
-2. Run the app
-
-   ```
-   $ uv run streamlit run streamlit_app.py
-   ```
+if analyze:
+    if ticker:
+        st.success(f"Ready to analyze {ticker}")
+    else:
+        st.warning("Enter a ticker symbol first.")
